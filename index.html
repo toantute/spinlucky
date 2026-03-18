@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎡 Vòng Quay May Mắn — 11A9</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:    #FF2D55;
+    --yellow: #FFD600;
+    --blue:   #00C2FF;
+    --green:  #00E676;
+    --orange: #FF6B00;
+    --purple: #C800FF;
+    --pink:   #FF69B4;
+    --dark:   #1A0030;
+    --light:  #FFF9E6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ——— STAR BACKGROUND ——— */
+  .stars {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle 2s infinite alternate;
+  }
+  @keyframes twinkle {
+    from { opacity: 0.2; transform: scale(1); }
+    to   { opacity: 1;   transform: scale(1.4); }
+  }
+
+  /* ——— CARNIVAL LIGHTS STRIP ——— */
+  .lights-top, .lights-bottom {
+    position: fixed; left: 0; right: 0;
+    display: flex; gap: 12px; padding: 6px 12px;
+    z-index: 10;
+  }
+  .lights-top { top: 0; }
+  .lights-bottom { bottom: 0; }
+  .bulb {
+    width: 18px; height: 18px; border-radius: 50%;
+    box-shadow: 0 0 8px 3px currentColor;
+    flex-shrink: 0;
+    animation: blink 1.4s infinite alternate;
+  }
+  .bulb:nth-child(odd)  { animation-delay: 0s; }
+  .bulb:nth-child(even) { animation-delay: .7s; }
+  @keyframes blink {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: .35; transform: scale(.85); }
+  }
+
+  /* ——— BANNER ——— */
+  .banner {
+    position: relative; z-index: 5;
+    text-align: center;
+    padding: 52px 20px 0;
+  }
+  .banner-ribbon {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    padding: 6px 28px;
+    border-radius: 40px;
+    box-shadow: 0 4px 0 #b8960a, 0 0 20px var(--yellow);
+    transform: rotate(-1.5deg);
+    margin-bottom: 8px;
+    letter-spacing: .5px;
+  }
+  .banner-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.6rem, 8vw, 5.2rem);
+    line-height: 1;
+    background: linear-gradient(135deg, var(--yellow), var(--orange), var(--red), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 18px rgba(255,180,0,.6));
+    letter-spacing: 1px;
+  }
+  .banner-sub {
+    color: #fff;
+    font-size: clamp(.9rem, 2.5vw, 1.1rem);
+    margin-top: 4px;
+    opacity: .85;
+    font-weight: 700;
+  }
+  .brand-tag {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    padding: 3px 20px;
+    border-radius: 30px;
+    margin-top: 10px;
+    box-shadow: 0 3px 0 #900, 0 0 14px var(--red);
+    animation: pulse-brand 2s infinite;
+  }
+  @keyframes pulse-brand {
+    0%,100% { box-shadow: 0 3px 0 #900, 0 0 14px var(--red); }
+    50%      { box-shadow: 0 3px 0 #900, 0 0 32px var(--red), 0 0 60px rgba(255,45,85,.4); }
+  }
+
+  /* ——— CAPTION TICKER ——— */
+  .ticker-wrap {
+    position: relative; z-index: 5;
+    background: var(--red);
+    margin: 18px 0 0;
+    padding: 8px 0;
+    overflow: hidden;
+    border-top: 3px solid var(--yellow);
+    border-bottom: 3px solid var(--yellow);
+  }
+  .ticker {
+    display: flex; gap: 60px;
+    white-space: nowrap;
+    animation: scroll-left 22s linear infinite;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+  .ticker span::before { content: "⭐ "; }
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ——— MENU SECTION ——— */
+  .menu-section {
+    position: relative; z-index: 5;
+    padding: 28px 16px 0;
+    max-width: 860px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .menu-title-wrap {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .menu-title {
+    display: inline-block;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    color: var(--dark);
+    background: linear-gradient(135deg, #FFD600, #FF6B00);
+    padding: 8px 36px;
+    border-radius: 50px;
+    box-shadow: 0 4px 0 #8B5500, 0 0 24px rgba(255,180,0,.5);
+    letter-spacing: .5px;
+  }
+  .menu-sub {
+    display: block;
+    color: rgba(255,255,255,.75);
+    font-size: .9rem;
+    font-weight: 700;
+    margin-top: 6px;
+    font-style: italic;
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media (min-width: 600px) {
+    .menu-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .menu-card {
+    background: linear-gradient(160deg, #3D1A00 0%, #5C2800 100%);
+    border: 3px solid #C8860A;
+    border-radius: 18px;
+    padding: 16px 12px 14px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,220,100,.2);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .menu-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0,0,0,.6), 0 0 20px rgba(200,140,10,.4);
+  }
+  .menu-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, #FFD600, transparent);
+  }
+  /* wood grain texture */
+  .menu-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      92deg,
+      transparent 0px, transparent 8px,
+      rgba(255,255,255,.02) 8px, rgba(255,255,255,.02) 9px
+    );
+    pointer-events: none;
+  }
+  .menu-emoji {
+    font-size: 2.6rem;
+    display: block;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+    animation: float-food 3s ease-in-out infinite;
+  }
+  .menu-card:nth-child(2) .menu-emoji { animation-delay: .5s; }
+  .menu-card:nth-child(3) .menu-emoji { animation-delay: 1s; }
+  .menu-card:nth-child(4) .menu-emoji { animation-delay: 1.5s; }
+  @keyframes float-food {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+  }
+  .menu-name {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(.95rem, 2.5vw, 1.15rem);
+    color: #FFD600;
+    text-shadow: 0 0 10px rgba(255,180,0,.5);
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+  .menu-price {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: #fff;
+    background: rgba(255,45,85,.8);
+    display: inline-block;
+    padding: 2px 14px;
+    border-radius: 20px;
+    box-shadow: 0 2px 0 rgba(0,0,0,.4);
+  }
+  .menu-badge {
+    position: absolute; top: 8px; right: 8px;
+    background: var(--green);
+    color: var(--dark);
+    font-size: .62rem;
+    font-weight: 900;
+    padding: 2px 7px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,230,118,.4);
+    letter-spacing: .3px;
+  }
+
+  /* condition banner */
+  .cond-banner {
+    margin-top: 16px;
+    background: linear-gradient(135deg, rgba(200,0,255,.25), rgba(0,194,255,.25));
+    border: 2px dashed rgba(255,255,255,.35);
+    border-radius: 16px;
+    padding: 12px 20px;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: .95rem;
+  }
+  .cond-banner strong {
+    color: var(--yellow);
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+  }
+
+  /* ——— MAIN LAYOUT ——— */
+  .main {
+    position: relative; z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 80px;
+    gap: 24px;
+  }
+
+  /* ——— WHEEL WRAPPER ——— */
+  .wheel-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .wheel-outer {
+    position: relative;
+    width: min(420px, 90vw);
+    height: min(420px, 90vw);
+  }
+
+  /* decorative ring */
+  .wheel-outer::before {
+    content: '';
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--red), var(--yellow), var(--green), var(--blue),
+      var(--purple), var(--orange), var(--pink), var(--red)
+    );
+    animation: spin-ring 8s linear infinite;
+    z-index: 0;
+  }
+  .wheel-outer::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: var(--dark);
+    z-index: 1;
+  }
+  @keyframes spin-ring {
+    to { transform: rotate(360deg); }
+  }
+
+  canvas#wheel {
+    position: relative; z-index: 2;
+    border-radius: 50%;
+    display: block;
+    width: 100%; height: 100%;
+    filter: drop-shadow(0 0 24px rgba(255,200,0,.45));
+  }
+
+  /* pointer */
+  .pointer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0; height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 56px solid #fff;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,.9));
+    z-index: 6;
+    margin-top: -28px;
+  }
+  .pointer-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26px; height: 26px;
+    background: radial-gradient(circle, #fff 40%, var(--yellow) 100%);
+    border-radius: 50%;
+    z-index: 7;
+    box-shadow: 0 0 12px var(--yellow);
+  }
+
+  /* ——— SPIN BUTTON ——— */
+  .spin-btn {
+    margin-top: 28px;
+    background: linear-gradient(135deg, var(--yellow) 0%, var(--orange) 60%, var(--red) 100%);
+    color: #fff;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    padding: 16px 56px;
+    border: none; border-radius: 60px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #8B0000, 0 0 30px var(--orange);
+    transition: transform .1s, box-shadow .1s;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: .5px;
+  }
+  .spin-btn::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,.25) 0%, transparent 60%);
+    border-radius: 60px;
+  }
+  .spin-btn:hover  { transform: translateY(-3px); box-shadow: 0 9px 0 #8B0000, 0 0 50px var(--orange); }
+  .spin-btn:active { transform: translateY(2px);  box-shadow: 0 3px 0 #8B0000; }
+  .spin-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+  /* ——— RESULT MODAL ——— */
+  .overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(10,0,30,.85);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+  }
+  .overlay.show { display: flex; }
+
+  .result-box {
+    background: linear-gradient(145deg, #1a0040, #310060);
+    border: 4px solid var(--yellow);
+    border-radius: 28px;
+    padding: 40px 48px;
+    text-align: center;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: 0 0 60px var(--yellow), inset 0 0 40px rgba(200,0,255,.2);
+    animation: pop-in .4s cubic-bezier(.17,.67,.32,1.4);
+  }
+  @keyframes pop-in {
+    from { transform: scale(.5) rotate(-8deg); opacity: 0; }
+    to   { transform: scale(1) rotate(0deg);   opacity: 1; }
+  }
+
+  .result-emoji { font-size: 3.8rem; display: block; margin-bottom: 10px; }
+  .result-headline {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: var(--yellow);
+    text-shadow: 0 0 16px var(--yellow);
+    margin-bottom: 8px;
+  }
+  .result-prize {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3.6rem;
+    line-height: 1;
+    margin: 8px 0;
+  }
+  .result-caption {
+    color: rgba(255,255,255,.85);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 10px 0 22px;
+    line-height: 1.4;
+  }
+
+  .close-btn {
+    background: var(--green);
+    color: var(--dark);
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    padding: 12px 40px;
+    border: none; border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #006400, 0 0 20px var(--green);
+    transition: transform .1s;
+  }
+  .close-btn:hover { transform: translateY(-2px); }
+
+  /* ——— CONFETTI ——— */
+  .confetti-piece {
+    position: fixed;
+    width: 10px; height: 14px;
+    border-radius: 2px;
+    z-index: 200;
+    pointer-events: none;
+    animation: fall 3s ease-in forwards;
+  }
+  @keyframes fall {
+    0%   { opacity: 1; transform: translateY(0) rotateZ(0deg); }
+    100% { opacity: 0; transform: translateY(100vh) rotateZ(720deg); }
+  }
+
+  /* ——— PRIZE GUIDE ——— */
+  .prize-guide {
+    background: rgba(255,255,255,.06);
+    border: 2px solid rgba(255,255,255,.15);
+    border-radius: 20px;
+    padding: 20px 28px;
+    width: min(420px, 90vw);
+    backdrop-filter: blur(8px);
+  }
+  .prize-guide h3 {
+    font-family: 'Fredoka One', cursive;
+    color: var(--yellow);
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+    text-align: center;
+    letter-spacing: .5px;
+  }
+  .prize-row {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 10px;
+  }
+  .prize-dot {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px currentColor;
+  }
+  .prize-label {
+    color: #fff;
+    font-weight: 700;
+    font-size: .95rem;
+    flex: 1;
+  }
+  .prize-caption-small {
+    color: rgba(255,255,255,.55);
+    font-size: .78rem;
+  }
+
+  /* ——— FOOTER ——— */
+  .footer {
+    position: relative; z-index: 5;
+    text-align: center;
+    color: rgba(255,255,255,.35);
+    font-size: .8rem;
+    padding-bottom: 50px;
+    font-weight: 700;
+  }
+
+  /* mobile tweaks */
+  @media (max-width: 480px) {
+    .result-box { padding: 28px 24px; }
+    .result-prize { font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Carnival lights top -->
+<div class="lights-top" id="lightsTop"></div>
+<div class="lights-bottom" id="lightsBot"></div>
+
+<!-- Banner -->
+<div class="banner">
+  <div class="banner-ribbon">✨ Hội Chợ Lớp 11A9 ✨</div>
+  <div class="banner-title">VÒNG QUAY<br>MAY MẮN</div>
+  <div class="banner-sub">🍜 Ăn là mê — Giá thì phê — Quay là ghiền! 🎡</div>
+  <div class="brand-tag">🎪 Tiệm Ăn 11A9 🎪</div>
+</div>
+
+<!-- Ticker -->
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker">
+    <span>Thử vận may nào bạn ơi!</span>
+    <span>Giảm giá hot — chỉ có ở 11A9</span>
+    <span>Quay ngay kẻo hết!</span>
+    <span>Chúc bạn may mắn nhé!</span>
+    <span>Học giỏi — Chơi hay — Giảm giá đỉnh</span>
+    <span>11A9 — Đỉnh của chóp!</span>
+    <span>Thử vận may nào bạn ơi!</span>
+    <span>Giảm giá hot — chỉ có ở 11A9</span>
+    <span>Quay ngay kẻo hết!</span>
+    <span>Chúc bạn may mắn nhé!</span>
+    <span>Học giỏi — Chơi hay — Giảm giá đỉnh</span>
+    <span>11A9 — Đỉnh của chóp!</span>
+  </div>
+</div>
+
+<!-- Menu Section -->
+<div class="menu-section">
+  <div class="menu-title-wrap">
+    <span class="menu-title">🍽️ THỰC ĐƠN HỘI CHỢ 🍽️</span>
+    <span class="menu-sub">✨ Ngon — Rẻ — Chất lượng đỉnh của lớp 11A9 ✨</span>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <span class="menu-badge">HOT</span>
+      <span class="menu-emoji">🍹</span>
+      <div class="menu-name">Trà Vải</div>
+      <span class="menu-price">15K</span>
+    </div>
+    <div class="menu-card">
+      <span class="menu-badge">YÊU THÍCH</span>
+      <span class="menu-emoji">🍱</span>
+      <div class="menu-name">Kimbap</div>
+      <span class="menu-price">15K – 20K</span>
+    </div>
+    <div class="menu-card">
+      <span class="menu-badge">ĐẶC SẢN</span>
+      <span class="menu-emoji">🥗</span>
+      <div class="menu-name">Bánh Đa Trộn</div>
+      <span class="menu-price">15K – 20K</span>
+    </div>
+    <div class="menu-card">
+      <span class="menu-badge">TƯƠI MÁT</span>
+      <span class="menu-emoji">🍓</span>
+      <div class="menu-name">Trái Cây</div>
+      <span class="menu-price">10K/ly · 25K/hộp</span>
+    </div>
+  </div>
+  <div class="cond-banner">
+    🛒 <strong>Mua từ 2 món trở lên</strong> → Được tham gia <strong>Vòng Quay May Mắn</strong> ngay! 🎡<br>
+    <span style="font-size:.85rem;opacity:.8;">Cơ hội giảm giá từ 0% – 20% cho tổng đơn hàng 🤑</span>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main">
+  <div class="wheel-section">
+    <div class="wheel-outer">
+      <canvas id="wheel" width="420" height="420"></canvas>
+      <div class="pointer"></div>
+      <div class="pointer-center"></div>
+    </div>
+    <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎡 QUAY NGAY!</button>
+  </div>
+
+  <!-- Prize Guide -->
+  <div class="prize-guide">
+    <h3>🏆 Bảng Phần Thưởng</h3>
+    <div class="prize-row">
+      <div class="prize-dot" style="background:#FF2D55;color:#FF2D55;"></div>
+      <div>
+        <div class="prize-label">Giảm 0% — "Không được gì!"</div>
+        <div class="prize-caption-small">May mắn lần sau nhé 😅 — Vẫn còn nụ cười!</div>
+      </div>
+    </div>
+    <div class="prize-row">
+      <div class="prize-dot" style="background:#FFD600;color:#FFD600;"></div>
+      <div>
+        <div class="prize-label">Giảm 5% — "Khởi đầu tốt!"</div>
+        <div class="prize-caption-small">Tí xíu nhưng vẫn hơn không 😄</div>
+      </div>
+    </div>
+    <div class="prize-row">
+      <div class="prize-dot" style="background:#00C2FF;color:#00C2FF;"></div>
+      <div>
+        <div class="prize-label">Giảm 10% — "Ngon lành cành đào!"</div>
+        <div class="prize-caption-small">Số đỏ rồi! Mua thêm đi nào 😎</div>
+      </div>
+    </div>
+    <div class="prize-row">
+      <div class="prize-dot" style="background:#00E676;color:#00E676;"></div>
+      <div>
+        <div class="prize-label">Giảm 20% — "JACKPOT!!!"</div>
+        <div class="prize-caption-small">Trời ơi! Số hưởng quá bạn ơi! 🤩🎉</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">🌟 Hội Chợ 11A9 — Vui hết mình, thắng hết nấc 🌟</div>
+
+<!-- Result Overlay -->
+<div class="overlay" id="overlay">
+  <div class="result-box">
+    <span class="result-emoji" id="resEmoji"></span>
+    <div class="result-headline" id="resHeadline"></div>
+    <div class="result-prize" id="resPrize"></div>
+    <div class="result-caption" id="resCaption"></div>
+    <button class="close-btn" onclick="closeResult()">🎮 Quay Lại</button>
+  </div>
+</div>
+
+<script>
+// ——— STARS ———
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 80; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random() * 3 + 1;
+  Object.assign(s.style, {
+    width: sz + 'px', height: sz + 'px',
+    top: Math.random() * 100 + '%',
+    left: Math.random() * 100 + '%',
+    animationDelay: Math.random() * 3 + 's',
+    animationDuration: (1.5 + Math.random() * 2.5) + 's'
+  });
+  starsEl.appendChild(s);
+}
+
+// ——— BULBS ———
+const colors = ['#FF2D55','#FFD600','#00C2FF','#00E676','#FF6B00','#C800FF','#FF69B4'];
+function makeBulbs(el) {
+  for (let i = 0; i < 60; i++) {
+    const b = document.createElement('div');
+    b.className = 'bulb';
+    b.style.background = colors[i % colors.length];
+    b.style.color = colors[i % colors.length];
+    el.appendChild(b);
+  }
+}
+makeBulbs(document.getElementById('lightsTop'));
+makeBulbs(document.getElementById('lightsBot'));
+
+// ——— WHEEL DATA ———
+const segments = [
+  { label: '0%',  color: '#FF2D55', text: '#fff',    chance: 30 },
+  { label: '5%',  color: '#FFD600', text: '#1A0030', chance: 30 },
+  { label: '10%', color: '#00C2FF', text: '#fff',    chance: 25 },
+  { label: '20%', color: '#00E676', text: '#1A0030', chance: 15 },
+  { label: '0%',  color: '#C800FF', text: '#fff',    chance: 0  },
+  { label: '5%',  color: '#FF6B00', text: '#fff',    chance: 0  },
+  { label: '10%', color: '#FF2D55', text: '#fff',    chance: 0  },
+  { label: '5%',  color: '#00C2FF', text: '#fff',    chance: 0  },
+];
+
+// build 8 segments with weighted odds
+const allSegs = [
+  { label: '0%',  color: '#FF2D55', text: '#fff'    },
+  { label: '5%',  color: '#FFD600', text: '#1A0030' },
+  { label: '10%', color: '#00C2FF', text: '#fff'    },
+  { label: '20%', color: '#00E676', text: '#1A0030' },
+  { label: '0%',  color: '#C800FF', text: '#fff'    },
+  { label: '5%',  color: '#FF6B00', text: '#fff'    },
+  { label: '10%', color: '#FF2D55', text: '#fff'    },
+  { label: '5%',  color: '#FFD600', text: '#1A0030' },
+];
+
+const N = allSegs.length;
+const arc = (2 * Math.PI) / N;
+
+// weighted random: segments that land
+// 0% → indices 0,4  (chance ~30%)
+// 5% → indices 1,5,7 (chance ~30%)
+// 10%→ indices 2,6   (chance ~25%)
+// 20%→ index  3      (chance ~15%)
+const weightedPool = [
+  0,0,0,0,0,0,
+  1,1,1,1,1,1,
+  2,2,2,2,2,
+  3,3,3,
+  4,4,4,4,4,
+  5,5,5,5,5,
+  6,6,6,6,6,
+  7,7,7,7,7,
+];
+
+const canvas = document.getElementById('wheel');
+const ctx    = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height, R = W / 2;
+
+let rotation = 0;
+let spinning  = false;
+
+function drawWheel(rot) {
+  ctx.clearRect(0, 0, W, H);
+  allSegs.forEach((seg, i) => {
+    const start = rot + i * arc;
+    const end   = start + arc;
+
+    // slice
+    ctx.beginPath();
+    ctx.moveTo(R, R);
+    ctx.arc(R, R, R - 4, start, end);
+    ctx.closePath();
+    ctx.fillStyle = seg.color;
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.25)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // label
+    ctx.save();
+    ctx.translate(R, R);
+    ctx.rotate(start + arc / 2);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = seg.text;
+    ctx.font = `bold ${R * 0.145}px 'Fredoka One', cursive`;
+    ctx.shadowColor = 'rgba(0,0,0,.5)';
+    ctx.shadowBlur = 6;
+    ctx.fillText(seg.label === '0%' ? '😢 0%' : seg.label === '20%' ? '🎉 20%' : '⭐ ' + seg.label, R - 18, 8);
+    ctx.restore();
+  });
+
+  // center circle
+  const grad = ctx.createRadialGradient(R, R, 4, R, R, R * 0.18);
+  grad.addColorStop(0, '#fff');
+  grad.addColorStop(1, '#FFD600');
+  ctx.beginPath();
+  ctx.arc(R, R, R * 0.18, 0, 2 * Math.PI);
+  ctx.fillStyle = grad;
+  ctx.fill();
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // center text
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = '#1A0030';
+  ctx.font = `bold ${R * 0.1}px 'Fredoka One', cursive`;
+  ctx.fillText('11A9', R, R);
+}
+
+drawWheel(rotation);
+
+// ——— RESULT DATA ———
+const results = {
+  '0%': {
+    emoji: '😭',
+    headline: 'Ối giời ơi...',
+    prize: '0% Giảm',
+    captions: [
+      'Số bạn hôm nay hơi xấu rồi 😅\nNhưng nụ cười thì FREE nha!',
+      'Không sao! Mua đủ 10 lần sẽ đổi vận 😂\nÔng trời không lấy tất cả đâu!',
+      'Đen thật nhưng mà... cái này do số phận 🤷\nThầy cô chắc đang nhìn đó!'
+    ]
+  },
+  '5%': {
+    emoji: '😊',
+    headline: 'Ổn áp rồi!',
+    prize: '5% Giảm',
+    captions: [
+      'Tí xíu nhưng vẫn hơn 0% nhé! 😄\n11A9 tặng bạn nụ cười miễn phí kèm theo!',
+      'Năm phần trăm — nhỏ nhưng có võ! 💪\nBạn đang thắng cuộc đời rồi đó!',
+      'Khởi đầu tốt! Lần sau quay nữa đi 😎\n11A9 luôn chào đón bạn!'
+    ]
+  },
+  '10%': {
+    emoji: '🤩',
+    headline: 'Ngon lành!',
+    prize: '10% Giảm',
+    captions: [
+      'Giảm 10%! Số đỏ hôm nay rồi! 🎊\nMua thêm đi kẻo hối hận!',
+      'Wow! Bạn có số hưởng đấy! 🌟\n11A9 xin chúc mừng!!!',
+      'Chục phần trăm đây rồi! 🙌\nCơ hội ngàn năm có một — mua thêm đi!'
+    ]
+  },
+  '20%': {
+    emoji: '🏆',
+    headline: 'JACKPOT!!!',
+    prize: '20% Giảm',
+    captions: [
+      'TRỜI ƠI! BẠN THẮNG JACKPOT!!! 🎉🎉🎉\n11A9 xin bái phục vận may của bạn!',
+      'ÔI TRỜI CON ƠI!!! 🤯🤯\nSố này hiếm lắm đó — flex ngay đi bạn!',
+      'GIẢM 20%!!! LẦU LẦU LẦU!!! 🥇🥇\nChụp màn hình lưu lại nhanh lên!'
+    ]
+  }
+};
+
+function spinWheel() {
+  if (spinning) return;
+  spinning = true;
+  document.getElementById('spinBtn').disabled = true;
+
+  // pick result
+  const pickedIdx = weightedPool[Math.floor(Math.random() * weightedPool.length)];
+  const pickedSeg = allSegs[pickedIdx];
+
+  // calculate stop angle
+  // pointer is at top (−π/2). Segment centre must land there.
+  const segCenter = pickedIdx * arc + arc / 2;
+  const stopAngle = -Math.PI / 2 - segCenter;
+
+  // random extra full spins (5–8)
+  const extraSpins = (5 + Math.floor(Math.random() * 4)) * 2 * Math.PI;
+  const targetRot  = stopAngle - (rotation % (2 * Math.PI)) + extraSpins;
+
+  const start    = performance.now();
+  const duration = 4000 + Math.random() * 1200;
+  const startRot = rotation;
+
+  function ease(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function frame(now) {
+    const t = Math.min((now - start) / duration, 1);
+    rotation = startRot + targetRot * ease(t);
+    drawWheel(rotation);
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      spinning = false;
+      document.getElementById('spinBtn').disabled = false;
+      showResult(pickedSeg.label);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+function showResult(label) {
+  const d = results[label];
+  const cap = d.captions[Math.floor(Math.random() * d.captions.length)];
+  document.getElementById('resEmoji').textContent    = d.emoji;
+  document.getElementById('resHeadline').textContent = d.headline;
+  document.getElementById('resPrize').textContent    = d.prize;
+  document.getElementById('resCaption').textContent  = cap;
+  document.getElementById('resPrize').style.color =
+    label === '0%' ? '#FF2D55' :
+    label === '5%' ? '#FFD600' :
+    label === '10%' ? '#00C2FF' : '#00E676';
+
+  document.getElementById('overlay').classList.add('show');
+  if (label !== '0%') spawnConfetti();
+}
+
+function closeResult() {
+  document.getElementById('overlay').classList.remove('show');
+}
+
+function spawnConfetti() {
+  const confColors = ['#FF2D55','#FFD600','#00C2FF','#00E676','#FF6B00','#C800FF','#FF69B4','#fff'];
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.top  = '-20px';
+    c.style.background = confColors[Math.floor(Math.random() * confColors.length)];
+    c.style.animationDelay  = Math.random() * 1.5 + 's';
+    c.style.animationDuration = (2 + Math.random()) + 's';
+    c.style.transform = `rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+</script>
+</body>
+</html>
