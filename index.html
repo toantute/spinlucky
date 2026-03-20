@@ -390,8 +390,8 @@
 <div class="locked-overlay" id="lockedOverlay">
   <div class="locked-box">
     <span class="lock-emoji">🔒</span>
-    <h2>Hết Lượt Rồi!</h2>
-    <p>Bạn đã dùng hết <strong id="lockedMax"></strong> lượt quay.<br>Hãy mua thêm và quay lại lần sau nhé! 😊</p>
+    <h2>Chưa Tới Giờ!</h2>
+    <p>Vui lòng chờ thêm <strong id="lockedMax"></strong> nữa rồi quay lại nhé! ⏰</p>
     <div class="ip-badge" id="lockedIPBadge"></div>
     <br>
     <button class="locked-close-btn" onclick="closeLockedOverlay()">😢 Ôi tiếc quá!</button>
@@ -402,8 +402,9 @@
 // ============================================================
 // CONFIG — chỉnh tại đây
 // ============================================================
-const MAX_SPINS   = 1;          // số lượt tối đa mỗi IP
-const STORAGE_KEY = 'hc_11a9_spins_v1';  // key localStorage
+const MAX_SPINS    = 1;                    // số lượt mỗi chu kỳ
+const COOLDOWN_MS  = 5 * 60 * 1000;       // 5 phút (ms)
+const STORAGE_KEY  = 'hc_11a9_spins_v2';  // key localStorage
 // ============================================================
 
 // ——— STARS ———
@@ -524,24 +525,52 @@ let spinCount = 0;
 let ipReady   = false;
 
 /**
- * Đọc dữ liệu đã lưu từ localStorage theo IP
- * Cấu trúc: { "1.2.3.4": 2, "5.6.7.8": 1, ... }
+ * Cấu trúc lưu: { "ip": { lastSpin: timestamp } }
+ * Chỉ cho quay lại sau COOLDOWN_MS kể từ lần quay cuối
  */
 function getStoredData() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-  } catch { return {}; }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch { return {}; }
 }
 
-function getCountForIP(ip) {
-  const data = getStoredData();
-  return data[ip] || 0;
+function getRecordForIP(ip) {
+  return getStoredData()[ip] || { lastSpin: 0 };
 }
 
-function incrementCountForIP(ip) {
+/** Trả về ms còn lại trước khi được quay (0 = có thể quay ngay) */
+function getCooldownRemaining(ip) {
+  const rec     = getRecordForIP(ip);
+  const elapsed = Date.now() - (rec.lastSpin || 0);
+  return Math.max(0, COOLDOWN_MS - elapsed);
+}
+
+function recordSpinForIP(ip) {
   const data = getStoredData();
-  data[ip] = (data[ip] || 0) + 1;
+  data[ip]   = { lastSpin: Date.now() };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+let countdownInterval = null;
+
+function startCountdown() {
+  if (countdownInterval) clearInterval(countdownInterval);
+  countdownInterval = setInterval(() => {
+    if (!userIP) return;
+    const rem = getCooldownRemaining(userIP);
+    if (rem <= 0) {
+      clearInterval(countdownInterval);
+      countdownInterval = null;
+      spinCount = 0;
+    }
+    updateSpinUI();
+  }, 500);
+}
+
+function formatCountdown(ms) {
+  const total = Math.ceil(ms / 1000);
+  const m     = Math.floor(total / 60);
+  const s     = total % 60;
+  return m + ':'  + String(s).padStart(2, '0');
 }
 
 /**
@@ -572,43 +601,36 @@ async function initIPLimit() {
     userIP = 'unknown_' + Date.now();
   }
 
-  spinCount = getCountForIP(userIP);
-  ipReady   = true;
+  const rem  = getCooldownRemaining(userIP);
+  spinCount  = rem > 0 ? 1 : 0;   // 1 = đang trong cooldown, 0 = sẵn sàng
+  ipReady    = true;
 
   document.getElementById('ipLoading').style.display = 'none';
   const counterEl = document.getElementById('spinCounter');
   counterEl.style.display = 'inline-block';
 
   updateSpinUI();
+  if (rem > 0) startCountdown();
 }
 
 function updateSpinUI() {
-  const remaining = MAX_SPINS - spinCount;
   const btn       = document.getElementById('spinBtn');
   const counterEl = document.getElementById('spinCounter');
-
   counterEl.className = 'spin-counter';
 
-  if (remaining <= 0) {
-    // Hết lượt
-    btn.disabled = true;
-    btn.textContent = '🔒 Hết Lượt Quay';
-    counterEl.textContent = `🚫 Đã dùng hết ${MAX_SPINS}/${MAX_SPINS} lượt`;
-    counterEl.classList.add('danger', 'locked');
-  } else if (remaining === 1) {
-    btn.disabled = false;
-    btn.textContent = '🎡 QUAY NGAY!';
-    counterEl.textContent = `⚠️ Còn 1 lượt quay cuối!`;
-    counterEl.classList.add('danger');
-  } else if (remaining === 2) {
-    btn.disabled = false;
-    btn.textContent = '🎡 QUAY NGAY!';
-    counterEl.textContent = `🔥 Còn ${remaining}/${MAX_SPINS} lượt quay`;
+  if (!userIP) return;
+  const rem = getCooldownRemaining(userIP);
+
+  if (rem > 0) {
+    // Đang trong thời gian chờ
+    btn.disabled     = true;
+    btn.textContent  = '⏳ Chờ chút nào...';
+    counterEl.textContent = `⏰ Quay lại sau: ${formatCountdown(rem)}`;
     counterEl.classList.add('warn');
   } else {
-    btn.disabled = false;
+    btn.disabled    = false;
     btn.textContent = '🎡 QUAY NGAY!';
-    counterEl.textContent = `✨ Còn ${remaining}/${MAX_SPINS} lượt quay`;
+    counterEl.textContent = '✨ Bạn có 1 lượt quay!';
   }
 }
 
@@ -621,8 +643,8 @@ initIPLimit();
 function spinWheel() {
   if (spinning || !ipReady) return;
 
-  // Kiểm tra lượt
-  if (spinCount >= MAX_SPINS) {
+  // Kiểm tra cooldown
+  if (getCooldownRemaining(userIP) > 0) {
     showLockedOverlay();
     return;
   }
@@ -630,9 +652,9 @@ function spinWheel() {
   spinning = true;
   document.getElementById('spinBtn').disabled = true;
 
-  // Trừ lượt ngay (tránh double-click)
-  incrementCountForIP(userIP);
-  spinCount++;
+  // Ghi lại thời điểm quay (tránh double-click)
+  recordSpinForIP(userIP);
+  spinCount = 1;
 
   const pickedIdx = weightedPool[Math.floor(Math.random() * weightedPool.length)];
   const pickedSeg = allSegs[pickedIdx];
@@ -658,7 +680,8 @@ function spinWheel() {
       requestAnimationFrame(frame);
     } else {
       spinning = false;
-      updateSpinUI(); // cập nhật counter sau khi quay xong
+      startCountdown(); // bắt đầu đếm ngược cooldown
+      updateSpinUI();
       showResult(pickedSeg.label);
     }
   }
@@ -729,7 +752,8 @@ function closeResult() {
 }
 
 function showLockedOverlay() {
-  document.getElementById('lockedMax').textContent  = MAX_SPINS + ' lượt';
+  const rem = userIP ? getCooldownRemaining(userIP) : 0;
+  document.getElementById('lockedMax').textContent     = formatCountdown(rem);
   document.getElementById('lockedIPBadge').textContent = 'IP: ' + (userIP || 'không xác định');
   document.getElementById('lockedOverlay').classList.add('show');
 }
