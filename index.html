@@ -28,14 +28,9 @@
     position: relative;
   }
 
-  /* ——— STAR BACKGROUND ——— */
-  .stars {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  }
+  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
   .star {
-    position: absolute;
-    border-radius: 50%;
-    background: white;
+    position: absolute; border-radius: 50%; background: white;
     animation: twinkle 2s infinite alternate;
   }
   @keyframes twinkle {
@@ -43,18 +38,15 @@
     to   { opacity: 1;   transform: scale(1.4); }
   }
 
-  /* ——— CARNIVAL LIGHTS STRIP ——— */
   .lights-top, .lights-bottom {
     position: fixed; left: 0; right: 0;
-    display: flex; gap: 12px; padding: 6px 12px;
-    z-index: 10;
+    display: flex; gap: 12px; padding: 6px 12px; z-index: 10;
   }
   .lights-top { top: 0; }
   .lights-bottom { bottom: 0; }
   .bulb {
     width: 18px; height: 18px; border-radius: 50%;
-    box-shadow: 0 0 8px 3px currentColor;
-    flex-shrink: 0;
+    box-shadow: 0 0 8px 3px currentColor; flex-shrink: 0;
     animation: blink 1.4s infinite alternate;
   }
   .bulb:nth-child(odd)  { animation-delay: 0s; }
@@ -64,52 +56,26 @@
     to   { opacity: .35; transform: scale(.85); }
   }
 
-  /* ——— BANNER ——— */
-  .banner {
-    position: relative; z-index: 5;
-    text-align: center;
-    padding: 52px 20px 0;
-  }
+  .banner { position: relative; z-index: 5; text-align: center; padding: 52px 20px 0; }
   .banner-ribbon {
-    display: inline-block;
-    background: var(--yellow);
-    color: var(--dark);
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(1.1rem, 3vw, 1.5rem);
-    padding: 6px 28px;
-    border-radius: 40px;
+    display: inline-block; background: var(--yellow); color: var(--dark);
+    font-family: 'Fredoka One', cursive; font-size: clamp(1.1rem, 3vw, 1.5rem);
+    padding: 6px 28px; border-radius: 40px;
     box-shadow: 0 4px 0 #b8960a, 0 0 20px var(--yellow);
-    transform: rotate(-1.5deg);
-    margin-bottom: 8px;
-    letter-spacing: .5px;
+    transform: rotate(-1.5deg); margin-bottom: 8px; letter-spacing: .5px;
   }
   .banner-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(2.6rem, 8vw, 5.2rem);
+    font-family: 'Fredoka One', cursive; font-size: clamp(2.6rem, 8vw, 5.2rem);
     line-height: 1;
     background: linear-gradient(135deg, var(--yellow), var(--orange), var(--red), var(--pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 18px rgba(255,180,0,.6));
-    letter-spacing: 1px;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; filter: drop-shadow(0 0 18px rgba(255,180,0,.6)); letter-spacing: 1px;
   }
-  .banner-sub {
-    color: #fff;
-    font-size: clamp(.9rem, 2.5vw, 1.1rem);
-    margin-top: 4px;
-    opacity: .85;
-    font-weight: 700;
-  }
+  .banner-sub { color: #fff; font-size: clamp(.9rem, 2.5vw, 1.1rem); margin-top: 4px; opacity: .85; font-weight: 700; }
   .brand-tag {
-    display: inline-block;
-    background: var(--red);
-    color: #fff;
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.1rem;
-    padding: 3px 20px;
-    border-radius: 30px;
-    margin-top: 10px;
+    display: inline-block; background: var(--red); color: #fff;
+    font-family: 'Fredoka One', cursive; font-size: 1.1rem;
+    padding: 3px 20px; border-radius: 30px; margin-top: 10px;
     box-shadow: 0 3px 0 #900, 0 0 14px var(--red);
     animation: pulse-brand 2s infinite;
   }
@@ -118,23 +84,15 @@
     50%      { box-shadow: 0 3px 0 #900, 0 0 32px var(--red), 0 0 60px rgba(255,45,85,.4); }
   }
 
-  /* ——— CAPTION TICKER ——— */
   .ticker-wrap {
-    position: relative; z-index: 5;
-    background: var(--red);
-    margin: 18px 0 0;
-    padding: 8px 0;
-    overflow: hidden;
-    border-top: 3px solid var(--yellow);
-    border-bottom: 3px solid var(--yellow);
+    position: relative; z-index: 5; background: var(--red);
+    margin: 18px 0 0; padding: 8px 0; overflow: hidden;
+    border-top: 3px solid var(--yellow); border-bottom: 3px solid var(--yellow);
   }
   .ticker {
-    display: flex; gap: 60px;
-    white-space: nowrap;
+    display: flex; gap: 60px; white-space: nowrap;
     animation: scroll-left 22s linear infinite;
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.1rem;
-    color: #fff;
+    font-family: 'Fredoka One', cursive; font-size: 1.1rem; color: #fff;
   }
   .ticker span::before { content: "⭐ "; }
   @keyframes scroll-left {
@@ -142,388 +100,168 @@
     to   { transform: translateX(-50%); }
   }
 
-  /* ——— MENU SECTION ——— */
   .menu-section {
     position: relative; z-index: 5;
-    padding: 28px 16px 0;
-    max-width: 860px;
-    margin: 0 auto;
-    width: 100%;
+    padding: 28px 16px 0; max-width: 860px; margin: 0 auto; width: 100%;
   }
-  .menu-title-wrap {
-    text-align: center;
-    margin-bottom: 18px;
-  }
+  .menu-title-wrap { text-align: center; margin-bottom: 18px; }
   .menu-title {
-    display: inline-block;
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(1.3rem, 4vw, 2rem);
-    color: var(--dark);
+    display: inline-block; font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.3rem, 4vw, 2rem); color: var(--dark);
     background: linear-gradient(135deg, #FFD600, #FF6B00);
-    padding: 8px 36px;
-    border-radius: 50px;
-    box-shadow: 0 4px 0 #8B5500, 0 0 24px rgba(255,180,0,.5);
-    letter-spacing: .5px;
+    padding: 8px 36px; border-radius: 50px;
+    box-shadow: 0 4px 0 #8B5500, 0 0 24px rgba(255,180,0,.5); letter-spacing: .5px;
   }
-  .menu-sub {
-    display: block;
-    color: rgba(255,255,255,.75);
-    font-size: .9rem;
-    font-weight: 700;
-    margin-top: 6px;
-    font-style: italic;
-  }
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-  @media (min-width: 600px) {
-    .menu-grid { grid-template-columns: repeat(4, 1fr); }
-  }
+  .menu-sub { display: block; color: rgba(255,255,255,.75); font-size: .9rem; font-weight: 700; margin-top: 6px; font-style: italic; }
+  .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (min-width: 600px) { .menu-grid { grid-template-columns: repeat(4, 1fr); } }
 
   .menu-card {
     background: linear-gradient(160deg, #3D1A00 0%, #5C2800 100%);
-    border: 3px solid #C8860A;
-    border-radius: 18px;
-    padding: 16px 12px 14px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    border: 3px solid #C8860A; border-radius: 18px; padding: 16px 12px 14px;
+    text-align: center; position: relative; overflow: hidden;
     box-shadow: 0 6px 18px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,220,100,.2);
     transition: transform .2s, box-shadow .2s;
   }
-  .menu-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 12px 28px rgba(0,0,0,.6), 0 0 20px rgba(200,140,10,.4);
-  }
-  .menu-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, transparent, #FFD600, transparent);
-  }
-  /* wood grain texture */
-  .menu-card::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(
-      92deg,
-      transparent 0px, transparent 8px,
-      rgba(255,255,255,.02) 8px, rgba(255,255,255,.02) 9px
-    );
-    pointer-events: none;
-  }
-  .menu-emoji {
-    font-size: 2.6rem;
-    display: block;
-    margin-bottom: 6px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
-    animation: float-food 3s ease-in-out infinite;
-  }
+  .menu-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 12px 28px rgba(0,0,0,.6), 0 0 20px rgba(200,140,10,.4); }
+  .menu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #FFD600, transparent); }
+  .menu-card::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(92deg, transparent 0px, transparent 8px, rgba(255,255,255,.02) 8px, rgba(255,255,255,.02) 9px); pointer-events: none; }
+  .menu-emoji { font-size: 2.6rem; display: block; margin-bottom: 6px; filter: drop-shadow(0 2px 4px rgba(0,0,0,.5)); animation: float-food 3s ease-in-out infinite; }
   .menu-card:nth-child(2) .menu-emoji { animation-delay: .5s; }
   .menu-card:nth-child(3) .menu-emoji { animation-delay: 1s; }
   .menu-card:nth-child(4) .menu-emoji { animation-delay: 1.5s; }
-  @keyframes float-food {
-    0%,100% { transform: translateY(0); }
-    50%      { transform: translateY(-5px); }
-  }
-  .menu-name {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(.95rem, 2.5vw, 1.15rem);
-    color: #FFD600;
-    text-shadow: 0 0 10px rgba(255,180,0,.5);
-    line-height: 1.2;
-    margin-bottom: 5px;
-  }
-  .menu-price {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(1.1rem, 3vw, 1.4rem);
-    color: #fff;
-    background: rgba(255,45,85,.8);
-    display: inline-block;
-    padding: 2px 14px;
-    border-radius: 20px;
-    box-shadow: 0 2px 0 rgba(0,0,0,.4);
-  }
-  .menu-badge {
-    position: absolute; top: 8px; right: 8px;
-    background: var(--green);
-    color: var(--dark);
-    font-size: .62rem;
-    font-weight: 900;
-    padding: 2px 7px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,230,118,.4);
-    letter-spacing: .3px;
-  }
+  @keyframes float-food { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  .menu-name { font-family: 'Fredoka One', cursive; font-size: clamp(.95rem, 2.5vw, 1.15rem); color: #FFD600; text-shadow: 0 0 10px rgba(255,180,0,.5); line-height: 1.2; margin-bottom: 5px; }
+  .menu-price { font-family: 'Fredoka One', cursive; font-size: clamp(1.1rem, 3vw, 1.4rem); color: #fff; background: rgba(255,45,85,.8); display: inline-block; padding: 2px 14px; border-radius: 20px; box-shadow: 0 2px 0 rgba(0,0,0,.4); }
+  .menu-badge { position: absolute; top: 8px; right: 8px; background: var(--green); color: var(--dark); font-size: .62rem; font-weight: 900; padding: 2px 7px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,230,118,.4); letter-spacing: .3px; }
+  .cond-banner { margin-top: 16px; background: linear-gradient(135deg, rgba(200,0,255,.25), rgba(0,194,255,.25)); border: 2px dashed rgba(255,255,255,.35); border-radius: 16px; padding: 12px 20px; text-align: center; color: #fff; font-weight: 700; font-size: .95rem; }
+  .cond-banner strong { color: var(--yellow); font-family: 'Fredoka One', cursive; font-size: 1.1rem; }
 
-  /* condition banner */
-  .cond-banner {
+  .main { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; padding: 24px 16px 80px; gap: 24px; }
+  .wheel-section { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .wheel-outer { position: relative; width: min(420px, 90vw); height: min(420px, 90vw); }
+  .wheel-outer::before { content: ''; position: absolute; inset: -14px; border-radius: 50%; background: conic-gradient(var(--red), var(--yellow), var(--green), var(--blue), var(--purple), var(--orange), var(--pink), var(--red)); animation: spin-ring 8s linear infinite; z-index: 0; }
+  .wheel-outer::after { content: ''; position: absolute; inset: -8px; border-radius: 50%; background: var(--dark); z-index: 1; }
+  @keyframes spin-ring { to { transform: rotate(360deg); } }
+  canvas#wheel { position: relative; z-index: 2; border-radius: 50%; display: block; width: 100%; height: 100%; filter: drop-shadow(0 0 24px rgba(255,200,0,.45)); }
+  .pointer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 56px solid #fff; filter: drop-shadow(0 0 10px rgba(255,255,255,.9)); z-index: 6; margin-top: -28px; }
+  .pointer-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 26px; height: 26px; background: radial-gradient(circle, #fff 40%, var(--yellow) 100%); border-radius: 50%; z-index: 7; box-shadow: 0 0 12px var(--yellow); }
+
+  /* ——— SPIN COUNTER BADGE ——— */
+  .spin-counter-wrap {
     margin-top: 16px;
-    background: linear-gradient(135deg, rgba(200,0,255,.25), rgba(0,194,255,.25));
-    border: 2px dashed rgba(255,255,255,.35);
-    border-radius: 16px;
-    padding: 12px 20px;
     text-align: center;
+  }
+  .spin-counter {
+    display: inline-block;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.05rem;
+    padding: 8px 26px;
+    border-radius: 40px;
+    background: rgba(255,255,255,.1);
+    border: 2px solid rgba(255,255,255,.25);
     color: #fff;
-    font-weight: 700;
+    letter-spacing: .3px;
+    transition: all .3s;
+  }
+  .spin-counter.warn {
+    background: rgba(255,107,0,.25);
+    border-color: var(--orange);
+    color: var(--orange);
+    animation: pulse-warn 1.2s infinite;
+  }
+  .spin-counter.danger {
+    background: rgba(255,45,85,.25);
+    border-color: var(--red);
+    color: var(--red);
+    animation: pulse-warn .8s infinite;
+  }
+  .spin-counter.locked {
+    background: rgba(255,45,85,.35);
+    border-color: var(--red);
+    color: #fff;
+    font-size: 1rem;
+  }
+  @keyframes pulse-warn {
+    0%,100% { box-shadow: none; }
+    50%      { box-shadow: 0 0 20px currentColor; }
+  }
+
+  /* loading state */
+  .ip-loading {
+    display: inline-block;
+    font-family: 'Fredoka One', cursive;
     font-size: .95rem;
+    color: rgba(255,255,255,.5);
+    margin-top: 12px;
+    animation: fade-pulse 1.2s infinite alternate;
   }
-  .cond-banner strong {
-    color: var(--yellow);
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.1rem;
-  }
+  @keyframes fade-pulse { from { opacity: .4; } to { opacity: 1; } }
 
-  /* ——— MAIN LAYOUT ——— */
-  .main {
-    position: relative; z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 24px 16px 80px;
-    gap: 24px;
-  }
-
-  /* ——— WHEEL WRAPPER ——— */
-  .wheel-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  .wheel-outer {
-    position: relative;
-    width: min(420px, 90vw);
-    height: min(420px, 90vw);
-  }
-
-  /* decorative ring */
-  .wheel-outer::before {
-    content: '';
-    position: absolute;
-    inset: -14px;
-    border-radius: 50%;
-    background: conic-gradient(
-      var(--red), var(--yellow), var(--green), var(--blue),
-      var(--purple), var(--orange), var(--pink), var(--red)
-    );
-    animation: spin-ring 8s linear infinite;
-    z-index: 0;
-  }
-  .wheel-outer::after {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    background: var(--dark);
-    z-index: 1;
-  }
-  @keyframes spin-ring {
-    to { transform: rotate(360deg); }
-  }
-
-  canvas#wheel {
-    position: relative; z-index: 2;
-    border-radius: 50%;
-    display: block;
-    width: 100%; height: 100%;
-    filter: drop-shadow(0 0 24px rgba(255,200,0,.45));
-  }
-
-  /* pointer */
-  .pointer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0; height: 0;
-    border-left: 18px solid transparent;
-    border-right: 18px solid transparent;
-    border-bottom: 56px solid #fff;
-    filter: drop-shadow(0 0 10px rgba(255,255,255,.9));
-    z-index: 6;
-    margin-top: -28px;
-  }
-  .pointer-center {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 26px; height: 26px;
-    background: radial-gradient(circle, #fff 40%, var(--yellow) 100%);
-    border-radius: 50%;
-    z-index: 7;
-    box-shadow: 0 0 12px var(--yellow);
-  }
-
-  /* ——— SPIN BUTTON ——— */
   .spin-btn {
-    margin-top: 28px;
+    margin-top: 16px;
     background: linear-gradient(135deg, var(--yellow) 0%, var(--orange) 60%, var(--red) 100%);
-    color: #fff;
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.6rem;
-    padding: 16px 56px;
-    border: none; border-radius: 60px;
-    cursor: pointer;
+    color: #fff; font-family: 'Fredoka One', cursive; font-size: 1.6rem;
+    padding: 16px 56px; border: none; border-radius: 60px; cursor: pointer;
     box-shadow: 0 6px 0 #8B0000, 0 0 30px var(--orange);
-    transition: transform .1s, box-shadow .1s;
-    position: relative;
-    overflow: hidden;
-    letter-spacing: .5px;
+    transition: transform .1s, box-shadow .1s; position: relative; overflow: hidden; letter-spacing: .5px;
   }
-  .spin-btn::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,.25) 0%, transparent 60%);
-    border-radius: 60px;
-  }
+  .spin-btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.25) 0%, transparent 60%); border-radius: 60px; }
   .spin-btn:hover  { transform: translateY(-3px); box-shadow: 0 9px 0 #8B0000, 0 0 50px var(--orange); }
   .spin-btn:active { transform: translateY(2px);  box-shadow: 0 3px 0 #8B0000; }
-  .spin-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+  .spin-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: 0 3px 0 #333; background: linear-gradient(135deg, #555, #333); }
 
-  /* ——— RESULT MODAL ——— */
-  .overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(10,0,30,.85);
-    z-index: 100;
-    justify-content: center;
-    align-items: center;
-  }
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(10,0,30,.85); z-index: 100; justify-content: center; align-items: center; }
   .overlay.show { display: flex; }
-
-  .result-box {
-    background: linear-gradient(145deg, #1a0040, #310060);
-    border: 4px solid var(--yellow);
-    border-radius: 28px;
-    padding: 40px 48px;
-    text-align: center;
-    max-width: 380px;
-    width: 90%;
-    box-shadow: 0 0 60px var(--yellow), inset 0 0 40px rgba(200,0,255,.2);
-    animation: pop-in .4s cubic-bezier(.17,.67,.32,1.4);
-  }
-  @keyframes pop-in {
-    from { transform: scale(.5) rotate(-8deg); opacity: 0; }
-    to   { transform: scale(1) rotate(0deg);   opacity: 1; }
-  }
-
+  .result-box { background: linear-gradient(145deg, #1a0040, #310060); border: 4px solid var(--yellow); border-radius: 28px; padding: 40px 48px; text-align: center; max-width: 380px; width: 90%; box-shadow: 0 0 60px var(--yellow), inset 0 0 40px rgba(200,0,255,.2); animation: pop-in .4s cubic-bezier(.17,.67,.32,1.4); }
+  @keyframes pop-in { from { transform: scale(.5) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(0deg); opacity: 1; } }
   .result-emoji { font-size: 3.8rem; display: block; margin-bottom: 10px; }
-  .result-headline {
-    font-family: 'Fredoka One', cursive;
-    font-size: 2rem;
-    color: var(--yellow);
-    text-shadow: 0 0 16px var(--yellow);
-    margin-bottom: 8px;
-  }
-  .result-prize {
-    font-family: 'Fredoka One', cursive;
-    font-size: 3.6rem;
-    line-height: 1;
-    margin: 8px 0;
-  }
-  .result-caption {
-    color: rgba(255,255,255,.85);
-    font-size: 1rem;
-    font-weight: 700;
-    margin: 10px 0 22px;
-    line-height: 1.4;
-  }
-
-  .close-btn {
-    background: var(--green);
-    color: var(--dark);
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.2rem;
-    padding: 12px 40px;
-    border: none; border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px 0 #006400, 0 0 20px var(--green);
-    transition: transform .1s;
-  }
+  .result-headline { font-family: 'Fredoka One', cursive; font-size: 2rem; color: var(--yellow); text-shadow: 0 0 16px var(--yellow); margin-bottom: 8px; }
+  .result-prize { font-family: 'Fredoka One', cursive; font-size: 3.6rem; line-height: 1; margin: 8px 0; }
+  .result-caption { color: rgba(255,255,255,.85); font-size: 1rem; font-weight: 700; margin: 10px 0 22px; line-height: 1.4; }
+  .close-btn { background: var(--green); color: var(--dark); font-family: 'Fredoka One', cursive; font-size: 1.2rem; padding: 12px 40px; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 0 #006400, 0 0 20px var(--green); transition: transform .1s; }
   .close-btn:hover { transform: translateY(-2px); }
 
-  /* ——— CONFETTI ——— */
-  .confetti-piece {
-    position: fixed;
-    width: 10px; height: 14px;
-    border-radius: 2px;
-    z-index: 200;
-    pointer-events: none;
-    animation: fall 3s ease-in forwards;
+  /* ——— LOCKED OVERLAY ——— */
+  .locked-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(10,0,30,.92);
+    z-index: 100; justify-content: center; align-items: center;
   }
-  @keyframes fall {
-    0%   { opacity: 1; transform: translateY(0) rotateZ(0deg); }
-    100% { opacity: 0; transform: translateY(100vh) rotateZ(720deg); }
+  .locked-overlay.show { display: flex; }
+  .locked-box {
+    background: linear-gradient(145deg, #1a0000, #300010);
+    border: 4px solid var(--red); border-radius: 28px;
+    padding: 40px 48px; text-align: center; max-width: 380px; width: 90%;
+    box-shadow: 0 0 60px var(--red), inset 0 0 40px rgba(255,45,85,.15);
+    animation: pop-in .4s cubic-bezier(.17,.67,.32,1.4);
   }
+  .locked-box .lock-emoji { font-size: 4rem; display: block; margin-bottom: 12px; }
+  .locked-box h2 { font-family: 'Fredoka One', cursive; color: var(--red); font-size: 1.8rem; margin-bottom: 10px; text-shadow: 0 0 14px var(--red); }
+  .locked-box p { color: rgba(255,255,255,.8); font-size: 1rem; font-weight: 700; line-height: 1.5; margin-bottom: 20px; }
+  .locked-box .ip-badge { display: inline-block; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 20px; padding: 4px 16px; font-size: .8rem; color: rgba(255,255,255,.5); margin-bottom: 20px; font-family: monospace; }
+  .locked-close-btn { background: var(--red); color: #fff; font-family: 'Fredoka One', cursive; font-size: 1.1rem; padding: 12px 40px; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 0 #600, 0 0 18px var(--red); transition: transform .1s; }
+  .locked-close-btn:hover { transform: translateY(-2px); }
 
-  /* ——— PRIZE GUIDE ——— */
-  .prize-guide {
-    background: rgba(255,255,255,.06);
-    border: 2px solid rgba(255,255,255,.15);
-    border-radius: 20px;
-    padding: 20px 28px;
-    width: min(420px, 90vw);
-    backdrop-filter: blur(8px);
-  }
-  .prize-guide h3 {
-    font-family: 'Fredoka One', cursive;
-    color: var(--yellow);
-    font-size: 1.3rem;
-    margin-bottom: 14px;
-    text-align: center;
-    letter-spacing: .5px;
-  }
-  .prize-row {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 10px;
-  }
-  .prize-dot {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    box-shadow: 0 0 8px currentColor;
-  }
-  .prize-label {
-    color: #fff;
-    font-weight: 700;
-    font-size: .95rem;
-    flex: 1;
-  }
-  .prize-caption-small {
-    color: rgba(255,255,255,.55);
-    font-size: .78rem;
-  }
+  .confetti-piece { position: fixed; width: 10px; height: 14px; border-radius: 2px; z-index: 200; pointer-events: none; animation: fall 3s ease-in forwards; }
+  @keyframes fall { 0% { opacity: 1; transform: translateY(0) rotateZ(0deg); } 100% { opacity: 0; transform: translateY(100vh) rotateZ(720deg); } }
 
-  /* ——— FOOTER ——— */
-  .footer {
-    position: relative; z-index: 5;
-    text-align: center;
-    color: rgba(255,255,255,.35);
-    font-size: .8rem;
-    padding-bottom: 50px;
-    font-weight: 700;
-  }
+  .prize-guide { background: rgba(255,255,255,.06); border: 2px solid rgba(255,255,255,.15); border-radius: 20px; padding: 20px 28px; width: min(420px, 90vw); backdrop-filter: blur(8px); }
+  .prize-guide h3 { font-family: 'Fredoka One', cursive; color: var(--yellow); font-size: 1.3rem; margin-bottom: 14px; text-align: center; letter-spacing: .5px; }
+  .prize-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .prize-dot { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 8px currentColor; }
+  .prize-label { color: #fff; font-weight: 700; font-size: .95rem; flex: 1; }
+  .prize-caption-small { color: rgba(255,255,255,.55); font-size: .78rem; }
 
-  /* mobile tweaks */
-  @media (max-width: 480px) {
-    .result-box { padding: 28px 24px; }
-    .result-prize { font-size: 2.8rem; }
-  }
+  .footer { position: relative; z-index: 5; text-align: center; color: rgba(255,255,255,.35); font-size: .8rem; padding-bottom: 50px; font-weight: 700; }
+  @media (max-width: 480px) { .result-box { padding: 28px 24px; } .result-prize { font-size: 2.8rem; } }
 </style>
 </head>
 <body>
 
-<!-- Stars -->
 <div class="stars" id="stars"></div>
-
-<!-- Carnival lights top -->
 <div class="lights-top" id="lightsTop"></div>
 <div class="lights-bottom" id="lightsBot"></div>
 
-<!-- Banner -->
 <div class="banner">
   <div class="banner-ribbon">✨ Hội Chợ Lớp 11A9 ✨</div>
   <div class="banner-title">VÒNG QUAY<br>MAY MẮN</div>
@@ -531,7 +269,6 @@
   <div class="brand-tag">🎪 Tiệm Ăn 11A9 🎪</div>
 </div>
 
-<!-- Ticker -->
 <div class="ticker-wrap">
   <div class="ticker" id="ticker">
     <span>Thử vận may nào bạn ơi!</span>
@@ -549,7 +286,6 @@
   </div>
 </div>
 
-<!-- Menu Section -->
 <div class="menu-section">
   <div class="menu-title-wrap">
     <span class="menu-title">🍽️ THỰC ĐƠN HỘI CHỢ 🍽️</span>
@@ -587,7 +323,6 @@
   </div>
 </div>
 
-<!-- Main -->
 <div class="main">
   <div class="wheel-section">
     <div class="wheel-outer">
@@ -595,10 +330,16 @@
       <div class="pointer"></div>
       <div class="pointer-center"></div>
     </div>
-    <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎡 QUAY NGAY!</button>
+
+    <!-- Spin counter -->
+    <div class="spin-counter-wrap">
+      <div class="ip-loading" id="ipLoading">⏳ Đang xác thực...</div>
+      <div class="spin-counter" id="spinCounter" style="display:none;"></div>
+    </div>
+
+    <button class="spin-btn" id="spinBtn" onclick="spinWheel()" disabled>🎡 QUAY NGAY!</button>
   </div>
 
-  <!-- Prize Guide -->
   <div class="prize-guide">
     <h3>🏆 Bảng Phần Thưởng</h3>
     <div class="prize-row">
@@ -645,7 +386,26 @@
   </div>
 </div>
 
+<!-- Locked Overlay -->
+<div class="locked-overlay" id="lockedOverlay">
+  <div class="locked-box">
+    <span class="lock-emoji">🔒</span>
+    <h2>Hết Lượt Rồi!</h2>
+    <p>Bạn đã dùng hết <strong id="lockedMax"></strong> lượt quay.<br>Hãy mua thêm và quay lại lần sau nhé! 😊</p>
+    <div class="ip-badge" id="lockedIPBadge"></div>
+    <br>
+    <button class="locked-close-btn" onclick="closeLockedOverlay()">😢 Ôi tiếc quá!</button>
+  </div>
+</div>
+
 <script>
+// ============================================================
+// CONFIG — chỉnh tại đây
+// ============================================================
+const MAX_SPINS   = 1;          // số lượt tối đa mỗi IP
+const STORAGE_KEY = 'hc_11a9_spins_v1';  // key localStorage
+// ============================================================
+
 // ——— STARS ———
 const starsEl = document.getElementById('stars');
 for (let i = 0; i < 80; i++) {
@@ -677,18 +437,6 @@ makeBulbs(document.getElementById('lightsTop'));
 makeBulbs(document.getElementById('lightsBot'));
 
 // ——— WHEEL DATA ———
-const segments = [
-  { label: '0%',  color: '#FF2D55', text: '#fff',    chance: 30 },
-  { label: '5%',  color: '#FFD600', text: '#1A0030', chance: 30 },
-  { label: '10%', color: '#00C2FF', text: '#fff',    chance: 25 },
-  { label: '20%', color: '#00E676', text: '#1A0030', chance: 15 },
-  { label: '0%',  color: '#C800FF', text: '#fff',    chance: 0  },
-  { label: '5%',  color: '#FF6B00', text: '#fff',    chance: 0  },
-  { label: '10%', color: '#FF2D55', text: '#fff',    chance: 0  },
-  { label: '5%',  color: '#00C2FF', text: '#fff',    chance: 0  },
-];
-
-// build 8 segments with weighted odds
 const allSegs = [
   { label: '0%',  color: '#FF2D55', text: '#fff'    },
   { label: '5%',  color: '#FFD600', text: '#1A0030' },
@@ -700,14 +448,9 @@ const allSegs = [
   { label: '5%',  color: '#FFD600', text: '#1A0030' },
 ];
 
-const N = allSegs.length;
+const N   = allSegs.length;
 const arc = (2 * Math.PI) / N;
 
-// weighted random: segments that land
-// 0% → indices 0,4  (chance ~30%)
-// 5% → indices 1,5,7 (chance ~30%)
-// 10%→ indices 2,6   (chance ~25%)
-// 20%→ index  3      (chance ~15%)
 const weightedPool = [
   0,0,0,0,0,0,
   1,1,1,1,1,1,
@@ -731,8 +474,6 @@ function drawWheel(rot) {
   allSegs.forEach((seg, i) => {
     const start = rot + i * arc;
     const end   = start + arc;
-
-    // slice
     ctx.beginPath();
     ctx.moveTo(R, R);
     ctx.arc(R, R, R - 4, start, end);
@@ -743,7 +484,6 @@ function drawWheel(rot) {
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // label
     ctx.save();
     ctx.translate(R, R);
     ctx.rotate(start + arc / 2);
@@ -756,7 +496,6 @@ function drawWheel(rot) {
     ctx.restore();
   });
 
-  // center circle
   const grad = ctx.createRadialGradient(R, R, 4, R, R, R * 0.18);
   grad.addColorStop(0, '#fff');
   grad.addColorStop(1, '#FFD600');
@@ -768,7 +507,6 @@ function drawWheel(rot) {
   ctx.lineWidth = 3;
   ctx.stroke();
 
-  // center text
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillStyle = '#1A0030';
@@ -777,6 +515,155 @@ function drawWheel(rot) {
 }
 
 drawWheel(rotation);
+
+// ============================================================
+// IP LIMIT SYSTEM
+// ============================================================
+let userIP    = null;
+let spinCount = 0;
+let ipReady   = false;
+
+/**
+ * Đọc dữ liệu đã lưu từ localStorage theo IP
+ * Cấu trúc: { "1.2.3.4": 2, "5.6.7.8": 1, ... }
+ */
+function getStoredData() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  } catch { return {}; }
+}
+
+function getCountForIP(ip) {
+  const data = getStoredData();
+  return data[ip] || 0;
+}
+
+function incrementCountForIP(ip) {
+  const data = getStoredData();
+  data[ip] = (data[ip] || 0) + 1;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+/**
+ * Lấy IP công khai qua ipify, fallback sang ip-api nếu lỗi.
+ * Nếu cả hai đều thất bại, dùng fingerprint trình duyệt.
+ */
+async function fetchPublicIP() {
+  const apis = [
+    'https://api.ipify.org?format=json',
+    'https://api64.ipify.org?format=json',
+  ];
+  for (const url of apis) {
+    try {
+      const r = await fetch(url, { signal: AbortSignal.timeout(4000) });
+      if (!r.ok) continue;
+      const d = await r.json();
+      if (d.ip) return d.ip;
+    } catch { /* try next */ }
+  }
+  // Fallback: browser fingerprint (không phải IP thật nhưng ổn định)
+  return 'fb_' + btoa(navigator.userAgent + screen.width + screen.height).slice(0, 20);
+}
+
+async function initIPLimit() {
+  try {
+    userIP = await fetchPublicIP();
+  } catch {
+    userIP = 'unknown_' + Date.now();
+  }
+
+  spinCount = getCountForIP(userIP);
+  ipReady   = true;
+
+  document.getElementById('ipLoading').style.display = 'none';
+  const counterEl = document.getElementById('spinCounter');
+  counterEl.style.display = 'inline-block';
+
+  updateSpinUI();
+}
+
+function updateSpinUI() {
+  const remaining = MAX_SPINS - spinCount;
+  const btn       = document.getElementById('spinBtn');
+  const counterEl = document.getElementById('spinCounter');
+
+  counterEl.className = 'spin-counter';
+
+  if (remaining <= 0) {
+    // Hết lượt
+    btn.disabled = true;
+    btn.textContent = '🔒 Hết Lượt Quay';
+    counterEl.textContent = `🚫 Đã dùng hết ${MAX_SPINS}/${MAX_SPINS} lượt`;
+    counterEl.classList.add('danger', 'locked');
+  } else if (remaining === 1) {
+    btn.disabled = false;
+    btn.textContent = '🎡 QUAY NGAY!';
+    counterEl.textContent = `⚠️ Còn 1 lượt quay cuối!`;
+    counterEl.classList.add('danger');
+  } else if (remaining === 2) {
+    btn.disabled = false;
+    btn.textContent = '🎡 QUAY NGAY!';
+    counterEl.textContent = `🔥 Còn ${remaining}/${MAX_SPINS} lượt quay`;
+    counterEl.classList.add('warn');
+  } else {
+    btn.disabled = false;
+    btn.textContent = '🎡 QUAY NGAY!';
+    counterEl.textContent = `✨ Còn ${remaining}/${MAX_SPINS} lượt quay`;
+  }
+}
+
+// Khởi tạo khi load trang
+initIPLimit();
+
+// ============================================================
+// SPIN LOGIC
+// ============================================================
+function spinWheel() {
+  if (spinning || !ipReady) return;
+
+  // Kiểm tra lượt
+  if (spinCount >= MAX_SPINS) {
+    showLockedOverlay();
+    return;
+  }
+
+  spinning = true;
+  document.getElementById('spinBtn').disabled = true;
+
+  // Trừ lượt ngay (tránh double-click)
+  incrementCountForIP(userIP);
+  spinCount++;
+
+  const pickedIdx = weightedPool[Math.floor(Math.random() * weightedPool.length)];
+  const pickedSeg = allSegs[pickedIdx];
+
+  const segCenter = pickedIdx * arc + arc / 2;
+  const stopAngle = -Math.PI / 2 - segCenter;
+  const extraSpins = (5 + Math.floor(Math.random() * 4)) * 2 * Math.PI;
+  const targetRot  = stopAngle - (rotation % (2 * Math.PI)) + extraSpins;
+
+  const start    = performance.now();
+  const duration = 4000 + Math.random() * 1200;
+  const startRot = rotation;
+
+  function ease(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function frame(now) {
+    const t = Math.min((now - start) / duration, 1);
+    rotation = startRot + targetRot * ease(t);
+    drawWheel(rotation);
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      spinning = false;
+      updateSpinUI(); // cập nhật counter sau khi quay xong
+      showResult(pickedSeg.label);
+    }
+  }
+  requestAnimationFrame(frame);
+}
 
 // ——— RESULT DATA ———
 const results = {
@@ -822,52 +709,6 @@ const results = {
   }
 };
 
-function spinWheel() {
-   if (localStorage.getItem("spun")) {
-    alert("⚠️ Bạn đã quay rồi! Mỗi người chỉ 1 lần nha 😄");
-    return;
-  }
-
-  if (spinning) return;
-  spinning = true;
-  document.getElementById('spinBtn').disabled = true;
-
-  // pick result
-  const pickedIdx = weightedPool[Math.floor(Math.random() * weightedPool.length)];
-  const pickedSeg = allSegs[pickedIdx];
-
-  // calculate stop angle
-  // pointer is at top (−π/2). Segment centre must land there.
-  const segCenter = pickedIdx * arc + arc / 2;
-  const stopAngle = -Math.PI / 2 - segCenter;
-
-  // random extra full spins (5–8)
-  const extraSpins = (5 + Math.floor(Math.random() * 4)) * 2 * Math.PI;
-  const targetRot  = stopAngle - (rotation % (2 * Math.PI)) + extraSpins;
-
-  const start    = performance.now();
-  const duration = 4000 + Math.random() * 1200;
-  const startRot = rotation;
-
-  function ease(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-
-  function frame(now) {
-    const t = Math.min((now - start) / duration, 1);
-    rotation = startRot + targetRot * ease(t);
-    drawWheel(rotation);
-    if (t < 1) {
-      requestAnimationFrame(frame);
-    } else {
-      spinning = false;
-      document.getElementById('spinBtn').disabled = false;
-      showResult(pickedSeg.label);
-    }
-  }
-  requestAnimationFrame(frame);
-}
-
 function showResult(label) {
   const d = results[label];
   const cap = d.captions[Math.floor(Math.random() * d.captions.length)];
@@ -876,16 +717,25 @@ function showResult(label) {
   document.getElementById('resPrize').textContent    = d.prize;
   document.getElementById('resCaption').textContent  = cap;
   document.getElementById('resPrize').style.color =
-    label === '0%' ? '#FF2D55' :
-    label === '5%' ? '#FFD600' :
+    label === '0%'  ? '#FF2D55' :
+    label === '5%'  ? '#FFD600' :
     label === '10%' ? '#00C2FF' : '#00E676';
-
   document.getElementById('overlay').classList.add('show');
   if (label !== '0%') spawnConfetti();
 }
 
 function closeResult() {
   document.getElementById('overlay').classList.remove('show');
+}
+
+function showLockedOverlay() {
+  document.getElementById('lockedMax').textContent  = MAX_SPINS + ' lượt';
+  document.getElementById('lockedIPBadge').textContent = 'IP: ' + (userIP || 'không xác định');
+  document.getElementById('lockedOverlay').classList.add('show');
+}
+
+function closeLockedOverlay() {
+  document.getElementById('lockedOverlay').classList.remove('show');
 }
 
 function spawnConfetti() {
@@ -896,20 +746,13 @@ function spawnConfetti() {
     c.style.left = Math.random() * 100 + 'vw';
     c.style.top  = '-20px';
     c.style.background = confColors[Math.floor(Math.random() * confColors.length)];
-    c.style.animationDelay  = Math.random() * 1.5 + 's';
+    c.style.animationDelay    = Math.random() * 1.5 + 's';
     c.style.animationDuration = (2 + Math.random()) + 's';
     c.style.transform = `rotate(${Math.random()*360}deg)`;
     document.body.appendChild(c);
     setTimeout(() => c.remove(), 4000);
   }
 }
-window.onload = () => {
-  if (localStorage.getItem("spun")) {
-    const btn = document.getElementById("spinBtn");
-    btn.disabled = true;
-    btn.innerText = "🎡 ĐÃ QUAY RỒI";
-  }
-};
 </script>
 </body>
 </html>
